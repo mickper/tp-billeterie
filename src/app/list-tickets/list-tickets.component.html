@@ -1,0 +1,4 @@
+<div *ngFor="let ticket of tickets" class="container-fluid py-3">
+    <app-ticket [ticket]="ticket"
+                (deleteEmitter)="deleteTicket($event)"></app-ticket>
+</div>
