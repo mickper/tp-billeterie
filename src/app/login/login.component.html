@@ -1,0 +1,19 @@
+<div class="container-fluid">
+  <div class="row my-3">
+    <div class="col align-self-end">
+      <form (submit)="onSubmit()" [formGroup]="globalForm">
+        <div class="form-group my-3">
+          <ng-container *ngIf="globalForm.get('login')?.errors">
+            <p class="text-danger" *ngIf="globalForm.get('login')?.errors?.['required']">L'identifiant est obligatoire.</p>
+          </ng-container>
+          <input type="text" id="login" name="login" class="form-control my-3" placeholder="Identifiant" formControlName="login">
+          <ng-container *ngIf="globalForm.get('password')?.errors">
+            <p class="text-danger" *ngIf="globalForm.get('password')?.errors?.['required']">Le mot de passe est obligatoire.</p>
+          </ng-container>
+          <input type="text" id="password" name="password" class="form-control my-3" placeholder="Mot de passe" formControlName="password">
+          <button type="submit" [disabled]="globalForm.invalid" class="text-center">Connexion</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Ticket} from "../bean/ticket";
+import {Ticket} from "../_bean/ticket";
 
 @Component({
   selector: 'app-ticket',

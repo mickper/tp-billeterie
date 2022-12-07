@@ -5,20 +5,25 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {ListTicketsComponent} from './list-tickets/list-tickets.component';
 import {TicketComponent} from './ticket/ticket.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {LoginComponent} from './login/login.component';
+import { UneSurDeuxPipe } from './_pipe/une-sur-deux.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListTicketsComponent,
-    TicketComponent
+    TicketComponent,
+    LoginComponent,
+    UneSurDeuxPipe
   ],
   imports: [
     NgbModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

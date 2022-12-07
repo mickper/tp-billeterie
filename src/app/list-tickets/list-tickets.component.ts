@@ -1,8 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {MOCK_TICKETS} from '../ticket.mock';
-import {Ticket, TicketImpl} from "../bean/ticket";
-import {tick} from "@angular/core/testing";
+import {TicketImpl} from "../_bean/ticket";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {TicketService} from "../_service/ticket.service";
 
 @Component({
   selector: 'app-list-tickets',
@@ -10,26 +9,27 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
   styleUrls: ['./list-tickets.component.css']
 })
 export class ListTicketsComponent implements OnInit {
-  tickets!: Ticket[];
-  ticketToEdit!: Ticket;
+  indexOfTicketToEdit!: number;
+  ticketToEdit!: TicketImpl;
   @ViewChild('editTicketModal') editTicketModal!: ElementRef;
 
-  constructor(private modalService: NgbModal) {
+  constructor(private modalService: NgbModal, public ticketService: TicketService) {
   }
 
   editTicket(index: number) {
-    this.ticketToEdit = this.tickets[index];
+    this.indexOfTicketToEdit = index;
+    this.ticketToEdit = new TicketImpl(this.ticketService.get(index));
     this.modalService.open(this.editTicketModal);
   }
 
+  validEditTicket() {
+    this.ticketService.edit(this.indexOfTicketToEdit, this.ticketToEdit);
+  }
+
   deleteTicket(index: number) {
-    this.tickets.splice(index, 1);
+    this.ticketService.delete(index);
   }
 
   ngOnInit(): void {
-    this.tickets = [];
-    for (let ticket of MOCK_TICKETS) {
-      this.tickets.push(new TicketImpl(ticket));
-    }
   }
 }

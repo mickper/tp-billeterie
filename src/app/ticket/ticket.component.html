@@ -5,7 +5,7 @@
   <div class="col align-self-end">
     <div class="row">
       <div class="col-12">
-        <p>{{name}} - {{nbLefts}} restant(s)</p>
+        <span [innerHTML]="name | uneSurDeux"></span><span> - {{nbLefts}} restant(s)</span>
       </div>
       <div class="col-12">
         <p>{{description}}</p>
