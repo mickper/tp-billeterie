@@ -7,19 +7,19 @@ import {Ticket} from "../bean/ticket";
   styleUrls: ['./ticket.component.css']
 })
 export class TicketComponent {
+  @Input() public name!: string;
+  @Input() public description!: string;
+  @Input() public nbLefts!: number;
+  @Input() public url!: string;
 
-  modify: boolean = false;
-
-  @Input()
-  public ticket?: Ticket;
-  @Output()
-  public deleteEmitter = new EventEmitter();
+  @Output() public editEmitter = new EventEmitter();
+  @Output() public deleteEmitter = new EventEmitter();
 
   edit() {
-    this.modify = !this.modify;
+    this.editEmitter.emit();
   }
 
   public delete() {
-    this.deleteEmitter.emit(this.ticket);
+    this.deleteEmitter.emit();
   }
 }

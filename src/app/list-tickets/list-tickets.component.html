@@ -1,4 +1,39 @@
-<div *ngFor="let ticket of tickets" class="container-fluid py-3">
-    <app-ticket [ticket]="ticket"
-                (deleteEmitter)="deleteTicket($event)"></app-ticket>
+<div *ngFor="let ticket of tickets; let i = index;" class="container-fluid py-3">
+  <app-ticket [name]="ticket.name"
+              [description]="ticket.description"
+              [url]="ticket.urlImage"
+              [nbLefts]="ticket.nbLefts"
+              (editEmitter)="editTicket(i)"
+              (deleteEmitter)="deleteTicket(i)"></app-ticket>
 </div>
+
+<ng-template #editTicketModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Modifier le ticket</h4>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="row my-3">
+        <div class="col-3">
+          <img src="{{ticketToEdit.urlImage}}" class="rounded img-thumbnail" style="width: 200px" alt="affiche du film {{ticketToEdit.name}}">
+        </div>
+        <div class="col align-self-end">
+          <form>
+            <div class="form-group my-3">
+              <label for="name">Nom du film</label>
+              <input id="name" name="name" class="form-control" placeholder="Nom du film" [(ngModel)]="ticketToEdit.name">
+              <label for="description">Description du film</label>
+              <input id="description" name="description" class="form-control" placeholder="Description du film" [(ngModel)]="ticketToEdit.description">
+              <label for="places-restantes">Nom du film</label>
+              <input id="places-restantes" name="places-restantes" class="form-control" placeholder="Nombre de places restantes" [(ngModel)]="ticketToEdit.nbLefts">
+            </div>
+          </form>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Valider</button>
+  </div>
+</ng-template>
