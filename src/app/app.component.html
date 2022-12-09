@@ -1,6 +1,8 @@
-<ng-container *ngIf="!authService.authToken">
-  <app-login></app-login>
-</ng-container>
-<ng-container *ngIf="authService.authToken">
-  <app-list-tickets></app-list-tickets>
-</ng-container>
+<router-outlet></router-outlet>
+
+<!--<ng-container *ngIf="!authService.authToken">-->
+<!--  <app-login></app-login>-->
+<!--</ng-container>-->
+<!--<ng-container *ngIf="authService.authToken">-->
+<!--  <app-list-tickets></app-list-tickets>-->
+<!--</ng-container>-->

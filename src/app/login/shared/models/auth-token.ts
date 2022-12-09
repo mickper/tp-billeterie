@@ -1,21 +1,21 @@
 export class AuthToken {
-  private _message: string;
+  private _messages: string;
   private _time: number;
   private _token: string;
 
   constructor({message = '', time = 0, token = ''}: { message?: string, time?: number, token?: string }) {
-    this._message = message;
+    this._messages = message;
     this._time = time;
     this._token = token;
   }
 
 
-  get message(): string {
-    return this._message;
+  get messages(): string {
+    return this._messages;
   }
 
-  set message(value: string) {
-    this._message = value;
+  set messages(value: string) {
+    this._messages = value;
   }
 
   get time(): number {

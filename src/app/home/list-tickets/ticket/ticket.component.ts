@@ -1,5 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Ticket} from "../_bean/ticket";
+import {ChangeDetectorRef, Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-ticket',
@@ -14,6 +13,12 @@ export class TicketComponent {
 
   @Output() public editEmitter = new EventEmitter();
   @Output() public deleteEmitter = new EventEmitter();
+
+  constructor(private ref: ChangeDetectorRef) {
+    setInterval(() => {
+      this.ref.markForCheck();
+    }, 1000);
+  }
 
   edit() {
     this.editEmitter.emit();
